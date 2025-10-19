@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Voting</title>
+
+{#	{{ users_JSON|json_script:'users' }}#}
+{#	{{ roles_JSON|json_script:'roles' }}#}
+{#	{{ categories|json_script:'categories_JSON' }}#}
+{#	{{ constitution_JSON|json_script:'constitution' }}#}
+{#	#}
+	<script>
+		const users = JSON.parse("{{ users_JSON | escapejs}}");
+		const roles = JSON.parse("{{ roles_JSON | escapejs }}");
+		const constitution = JSON.parse("{{ constitution_JSON | escapejs }}");
+		const categories = JSON.parse("{{ categories | escapejs }}");
+		const from_submit = {{ from_submit|lower }};
+		const sent_duplicate = {{ sent_duplicate|lower }};
+		const too_many_provisions = {{ too_many_provisions|lower }}
+	</script>
+
+{#	<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>#}
+{#	<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>#}
+{#	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>#}
+
+	{% load static %}
+	<script type="text/javascript" src="{% static 'votingapp/voting.js' %}"></script>
+
+	<link rel="shortcut icon" type="image/ico" href="{% static 'votingapp/voting.ico' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'votingapp/voting.css' %}">
+
+</head>
+
+<body>
+
+	<div class="fill" id="left"></div>
+
+	<div id="main">
+
+		<form action="{% url 'submit_vote' %}" method="post" id="main_formset">
+		{% csrf_token %}
+		<fieldset>
+
+			<div id="proposee_block"></div>
+
+			<div id="category_block"></div>
+
+			<div class="optional" id="value1_block"></div>
+
+			<div class="optional" id="value2_block"></div>
+
+
+		</fieldset>
+		<input type="submit" value="Put to a vote">
+		</form>
+
+		<div id="post_form_blurb"></div>
+
+	</div>
+
+	<div class="fill" id="right"></div>
+
+</body>
+</html>
