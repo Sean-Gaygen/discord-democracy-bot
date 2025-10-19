@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+*{
+    color: #dddddd;
+}
+
+html{
+    align-content: center;
+    background-color: #151520;
+    text-wrap: pretty;
+    width: 100vw;
+}
+
+body{
+    display: grid;
+    grid-template-columns: 10vw 80vw 10vw;
+}
+
+option, select, input, textarea{
+    background-color: #0b0808;
+    border-color: #0b0808;
+}
+
+option{
+    width: 100%;
+    max-width: 100%;
+    text-wrap: auto;
+}
+
+textarea, #left, #right, #main{
+    width: 100%;
+}
+
+#left{
+
+    display: grid;
+    grid-column: 1;
+
+}
+
+#main{
+
+    display: grid;
+    grid-column: 2;
+    min-width: 0;
+    text-wrap: auto;
+
+}
+
+#right{
+
+    display: grid;
+    grid-column: 3;
+
+}
